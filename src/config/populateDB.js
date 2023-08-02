@@ -1,5 +1,5 @@
-const seed = require("./seed.js");
-const Libro = require("../models.js");
+const seed = require("../api/seed/seed.js");
+const Libro = require("../api/models/models.js");
 
 const main = async () => {
   await Libro.collection.drop();
