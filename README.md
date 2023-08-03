@@ -1,7 +1,7 @@
 | Solicitud HTTP | Endpoint         | Descripción                 |
 | -------------- | ---------------- | --------------------------- |
 | GET            | /libros          | Todos los libros           |
-| GET            | /libros/id       | Libro por ID               |
+| GET            | /libros/:id       | Libro por ID               |
 | POST           | /libro           | Crear libro                |
 | PUT            | /libro/:id       | Actualizar libro por ID    |
 | DELETE         | /libro/:id       | Borrar libro por ID        |
