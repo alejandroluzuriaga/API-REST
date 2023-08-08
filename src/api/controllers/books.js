@@ -31,11 +31,12 @@ const getTodosLosLibros = async (req, res) => {
   
   const crearLibro = async (req, res) => {
     try {
+      const { name, autor, anio_publicacion, genero } = req.body;
       const libro = new Libro({
-        name: req.body.name,
-        autor: req.body.autor,
-        anio_publicacion: req.body.anio_publicacion,
-        genero: req.body.genero,
+        name,
+        autor,
+        anio_publicacion,
+        genero,
       });
   
       await libro.save();
@@ -43,9 +44,9 @@ const getTodosLosLibros = async (req, res) => {
       res.status(201).json({ data: libro });
     } catch (err) {
       console.log("API error:", err);
-      res.status(500).json({ data: "Unexpected server error" });
+      res.status(500).json({ error: "Unexpected server error" });
     }
-  };
+  }   
   
   const actualizarLibro = async (req, res) => {
     const { id } = req.params;
@@ -53,11 +54,11 @@ const getTodosLosLibros = async (req, res) => {
   
     try {
       const actualizacion = {};
-      if (name !== null) actualizacion.titulo = name;
-      if (autor !== null) actualizacion.autor = autor;
-      if (anio_publicacion !== null)
+      if (name !== undefined) actualizacion.name = name; // Usar 'name' en lugar de 'titulo'
+      if (autor !== undefined) actualizacion.autor = autor;
+      if (anio_publicacion !== undefined)
         actualizacion.anio_publicacion = anio_publicacion;
-      if (genero !== null) actualizacion.genero = genero;
+      if (genero !== undefined) actualizacion.genero = genero;
   
       if (Object.keys(actualizacion).length === 0) {
         return res
@@ -76,7 +77,7 @@ const getTodosLosLibros = async (req, res) => {
       res.status(200).json({ data: libroActualizado });
     } catch (err) {
       console.log("API error:", err);
-      res.status(500).json({ data: "Unexpected server error" });
+      res.status(500).json({ error: "Unexpected server error" });
     }
   };
   
